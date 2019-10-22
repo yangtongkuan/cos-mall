@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.cos</groupId>
-        <artifactId>cos-mall</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cos</groupId>
-    <artifactId>cos-mall-user</artifactId>
+    <artifactId>cos-mall-user-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cos-mall-user</name>
-    <description>Demo project for Spring Boot</description>
+    <name>cos-mall-user-api</name>
+    <description>用户系统提供rpc服务接口</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,14 +20,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cos</groupId>
-            <artifactId>cos-mall-user-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
