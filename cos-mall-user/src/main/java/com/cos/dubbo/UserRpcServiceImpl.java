@@ -22,6 +22,9 @@ public class UserRpcServiceImpl implements UserRpcService {
 
     @Override
     public UserInfoDto getBySysCustomerAndUserId(String sysCustomer, Long userId) {
-        return null;
+
+        UserInfoDto dto = new UserInfoDto();
+        dto.setSysCustomer(sysCustomer).setId(userId);
+        return dto;
     }
 }
