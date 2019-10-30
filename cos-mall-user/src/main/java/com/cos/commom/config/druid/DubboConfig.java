@@ -10,7 +10,7 @@ public class DubboConfig {
     @Bean
     public MetadataReportConfig metadataReportConfig() {
         MetadataReportConfig metadataReportConfig = new MetadataReportConfig();
-        metadataReportConfig.setAddress("zookeeper://127.0.0.1:2181");
+        metadataReportConfig.setAddress("zookeeper://118.25.83.43:2181");
         return metadataReportConfig;
     }
 
