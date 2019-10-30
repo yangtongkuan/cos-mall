@@ -1,9 +1,9 @@
 package com.cos.dubbo;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.cos.dto.user.UserInfoDto;
 import com.cos.service.UserService;
 import com.cos.service.user.UserRpcService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,8 @@ import org.springframework.stereotype.Component;
  * @To change this template use File | Settings | File Templates.
  */
 @Component
-@Service(retries = 0, timeout = 3000)
+@Service
 public class UserRpcServiceImpl implements UserRpcService {
-    @Autowired
-    private UserService userService;
-
     @Override
     public UserInfoDto getBySysCustomerAndUserId(String sysCustomer, Long userId) {
 
