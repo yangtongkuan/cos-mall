@@ -17,6 +17,7 @@
     <modules>
         <module>cos-mall-user</module>
         <module>cos-mall-comment</module>
+        <module>cos-mall-integral</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
