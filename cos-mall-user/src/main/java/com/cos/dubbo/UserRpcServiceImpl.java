@@ -24,4 +24,9 @@ public class UserRpcServiceImpl implements UserRpcService {
         dto.setSysCustomer(sysCustomer).setId(userId);
         return dto;
     }
+
+    @Override
+    public UserInfoDto getBySysCustomerAndToken(String sysCustomer, String token) {
+        return null;
+    }
 }

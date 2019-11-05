@@ -16,7 +16,7 @@ import java.util.Date;
  * @Date: @Date 2019/10/22 22:10
  * @To change this template use File | Settings | File Templates.
  */
-@Table(name = "t_user_info")
+@Table(name = "user_info")
 @Entity
 @Data
 @Accessors(chain = true)
@@ -24,7 +24,6 @@ public class UserInfo implements Serializable {
     @Id
     private Long id;                // 用户id
     private String sysCustomer;    // 系统标识
-    private String username;       //  用户账号
     private String name;            // 名字
     private String sex;             // sex boy girl
     private String prov;            // 省
