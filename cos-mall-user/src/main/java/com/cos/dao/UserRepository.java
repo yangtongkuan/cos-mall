@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<UserInfo, Long> {
 
     UserInfo findBySysCustomerAndIdAndDelFlag(String sysCustomer, Long id, int delFlag);
 
+    UserInfo findBySysCustomerAndPhoneAndDelFlag(String sysCustomer, String phone, int delFlag);
+
 }

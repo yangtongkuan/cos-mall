@@ -1,6 +1,9 @@
 package com.cos.service;
 
+import com.cos.common.config.redis.RedisCacheUtils;
 import com.cos.common.tools.DateUtils;
+import com.cos.common.tools.IdWorker;
+import com.cos.common.tools.RandomCharsUtils;
 import com.cos.dao.UserTokenRepository;
 import com.cos.domain.bean.UserInfo;
 import com.cos.domain.bean.UserTokenInfo;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.print.DocFlavor;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -24,8 +28,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserTokenService {
 
-    private static Long expireTime = 7 * 24 * 60 * 60 * 1000L;
+    private static final Long expireTime = 30 * 24 * 60 * 60 * 1000L;
+    private static final int TOKEN_LENGTH = 20;
 
+    @Autowired
+    private RedisCacheUtils redisCacheUtils;
     @Autowired
     private UserTokenRepository userTokenRepository;
 
@@ -45,7 +52,7 @@ public class UserTokenService {
         if (userToken != null) {
             userToken.setDelFlag(1);
             userTokenRepository.save(userToken);
-//            redisUtils.delete(getTokenKey(sysCustomer, token));
+            redisCacheUtils.del(getKey(userToken.getSysCustomer(), userToken.getToken()));
         }
     }
 
@@ -54,17 +61,21 @@ public class UserTokenService {
         if (userTokenList != null && !userTokenList.isEmpty()) {
             userTokenList = userTokenList.stream().map(bean -> bean.setDelFlag(1)).collect(Collectors.toList());
             userTokenRepository.saveAll(userTokenList);
-//            redisUtils.delete(getTokenKey(sysCustomer, token));
+            List<String> list = userTokenList.stream().map(bean -> {
+                return getKey(bean.getSysCustomer(), bean.getToken());
+            }).collect(Collectors.toList());
+            redisCacheUtils.del(list.toArray(new String[list.size()]));
         }
     }
 
     public String createUserToken(String sysCustomer, Long userId, String loginIp) {
         this.removeTokenCache(sysCustomer, userId);
-        String token = "";
+        String token = createToken();
         UserTokenInfo info = new UserTokenInfo();
         info.setUserId(userId).setSysCustomer(sysCustomer).setDelFlag(0).setLoginIp(loginIp)
                 .setToken(token).setLoginTime(new Date()).setExpireDate(expireTime);
         userTokenRepository.save(info);
+        redisCacheUtils.set(getKey(sysCustomer, token), userId, expireTime / 1000, TimeUnit.SECONDS);
         return token;
     }
 
@@ -72,5 +83,9 @@ public class UserTokenService {
         return sysCustomer + "." + token;
     }
 
+    private static String createToken() {
+        long nextId = IdWorker.getInstance().nextId();
+        return RandomCharsUtils.getRandomChar(nextId + "", TOKEN_LENGTH);
+    }
 
 }

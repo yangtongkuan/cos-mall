@@ -24,4 +24,5 @@ public class UserInfoVo {
     private String phone;           // 登录账号
     private String photo;           // 头像
     private String signature;       // 签名
+    private String token;           // 登录标识
 }

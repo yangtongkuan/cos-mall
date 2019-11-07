@@ -1,6 +1,8 @@
 package com.cos.common.tools;
 
 
+import org.apache.commons.lang.StringUtils;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -34,21 +36,39 @@ public class RandomCharsUtils {
         }
         return sb.toString();
     }
+
+    public static synchronized String getRandomChar(String ori, int length) {        //length表示生成字符串的长度
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        if (StringUtils.isBlank(ori)) {
+            ori = "";
+        }
+        sb.append(ori);
+        if (length >= ori.length()) {
+            sb.append(DateUtils.sdfDateMilli.get().format(new Date()));
+            for (int i = 0; i < length - ori.length(); i++) {
+                sb.append(base.charAt(random.nextInt(base.length())));
+            }
+        }
+        return sb.toString();
+    }
+
     /*
      * 订单开始交易的时间
      */
-    public static String timeStart(){
+    public static String timeStart() {
         return DateUtils.sdfDateMilli.get().format(new Date());
     }
 
     /*
      * 订单逾期时间
      */
-    public static String timeExpire(int activeTime){
-        Calendar now=Calendar.getInstance();
+    public static String timeExpire(int activeTime) {
+        Calendar now = Calendar.getInstance();
         now.add(Calendar.MINUTE, activeTime);
         return DateUtils.sdfDateMilli.get().format(now.getTimeInMillis());
     }
+
     public static void main(String[] args) {
         System.out.println(getRandomChar(16));
     }
