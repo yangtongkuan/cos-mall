@@ -80,7 +80,7 @@ public class UserTokenService {
     }
 
     private String getKey(String sysCustomer, String token) {
-        return sysCustomer + "." + token;
+        return "token:" + sysCustomer + ":" + token;
     }
 
     private static String createToken() {
