@@ -117,7 +117,7 @@ public class IdWorker {
     }
 
     public static IdWorker getInstance() {
-        return IdWorker.Singleton.INSTANCE.getInstance();
+        return Singleton.INSTANCE.getInstance();
     }
     //==============================Constructors=====================================
 

@@ -76,7 +76,7 @@ public class OrderNOUtils {
     }
 
     public static OrderNOUtils getInstance() {
-        return OrderNOUtils.Singleton.INSTANCE.getInstance();
+        return Singleton.INSTANCE.getInstance();
     }
     //==============================Constructors=====================================
 
