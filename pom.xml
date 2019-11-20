@@ -18,6 +18,7 @@
         <module>cos-mall-user</module>
         <module>cos-mall-comment</module>
         <module>cos-mall-integral</module>
+        <module>cos-mall-common</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
