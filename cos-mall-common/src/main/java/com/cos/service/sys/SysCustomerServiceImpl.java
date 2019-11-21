@@ -2,9 +2,10 @@ package com.cos.service.sys;
 
 import com.cos.dao.sys.SysCustomerRepository;
 import com.cos.domain.bean.sys.SysCustomerInfo;
-import com.cos.domain.exception.UnKnowSysCustomerException;
+import com.cos.domain.utils.exception.UnKnowSysCustomerException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -17,17 +18,19 @@ import java.util.stream.Collectors;
  * Created with IntelliJ IDEA.
  *
  * @User: @Created by yangtk
- * @Date: @Date 2019/8/11 16:17
+ * @Date: @Date 2019/11/21 8:54
+ * @Classname: SysCustomerServiceImpl
  * @To change this template use File | Settings | File Templates.
  */
 @Service
-public class SysCustomerService {
+@ConditionalOnMissingBean(SysCustomerService.class)
+public class SysCustomerServiceImpl implements SysCustomerService {
 
     // 客户端标识
     private static ConcurrentHashMap<String, SysCustomerInfo> dataMap = new ConcurrentHashMap<>();
 
-    private final static String EmptySysCustomer = "客户端标识不能为空";
-    private final static String UnSearchSysCustomer = "未查询到客户端信息";
+    private final static String EmptySysCustomer = "the sysCustomer is not allowed empty";
+    private final static String UnSearchSysCustomer = "the customer is not find in system";
 
     @Autowired
     private SysCustomerRepository sysCustomerRepository;
@@ -43,7 +46,7 @@ public class SysCustomerService {
         }
     }
 
-    // 获取一个客户端标识
+    @Override
     public SysCustomerInfo get(String sysCustomer) {
         if (StringUtils.isEmpty(sysCustomer)) {
             return null;
@@ -57,17 +60,16 @@ public class SysCustomerService {
         }
         return sysCustomerInfo;
     }
-    // 获取客户端异常
+
+    @Override
     public SysCustomerInfo getValidSysCustomerInfo(String sysCustomer) throws UnKnowSysCustomerException {
         if (StringUtils.isEmpty(sysCustomer)) {
             throw new UnKnowSysCustomerException(EmptySysCustomer);
         }
-        SysCustomerInfo sysCustomerInfo = this.get(sysCustomer);
-        if (sysCustomerInfo == null) {
+        SysCustomerInfo customerInfo = this.get(sysCustomer);
+        if (customerInfo == null) {
             throw new UnKnowSysCustomerException(UnSearchSysCustomer);
         }
-        return sysCustomerInfo;
+        return customerInfo;
     }
-
-
 }

@@ -1,8 +1,7 @@
-package com.cos.common.exception;
+package com.cos.exception;
 
 import com.cos.common.tools.AjaxResult;
-import com.cos.domain.exception.UnKnowSysCustomerException;
-import org.aspectj.weaver.AjAttribute;
+import com.cos.domain.utils.exception.UnKnowSysCustomerException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

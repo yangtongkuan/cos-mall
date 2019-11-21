@@ -3,7 +3,7 @@ package com.cos.web.controller;
 import com.cos.common.tools.AjaxResult;
 import com.cos.common.tools.ClientIpUtils;
 import com.cos.domain.bean.sys.SysCustomerInfo;
-import com.cos.domain.exception.UnKnowSysCustomerException;
+import com.cos.domain.utils.exception.UnKnowSysCustomerException;
 import com.cos.domain.vo.UserInfoVo;
 import com.cos.service.UserAuthService;
 import com.cos.service.UserService;

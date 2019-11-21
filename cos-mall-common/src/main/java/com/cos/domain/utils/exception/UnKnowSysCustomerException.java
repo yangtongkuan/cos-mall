@@ -1,4 +1,4 @@
-package com.cos.domain.exception;
+package com.cos.domain.utils.exception;
 
 /**
  * Created with IntelliJ IDEA.

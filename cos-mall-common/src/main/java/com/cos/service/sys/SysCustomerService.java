@@ -1,9 +1,7 @@
 package com.cos.service.sys;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import com.cos.domain.bean.sys.SysCustomerInfo;
+import com.cos.domain.utils.exception.UnKnowSysCustomerException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,8 +11,11 @@ import org.springframework.stereotype.Service;
  * @Classname: SysCustomerService
  * @To change this template use File | Settings | File Templates.
  */
-@Service
-public class SysCustomerService {
+public interface SysCustomerService {
+
+    SysCustomerInfo get(String sysCustomer);
+
+    SysCustomerInfo getValidSysCustomerInfo(String sysCustomer) throws UnKnowSysCustomerException;
 
 
 }
