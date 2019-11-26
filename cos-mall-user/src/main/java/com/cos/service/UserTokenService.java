@@ -64,10 +64,11 @@ public class UserTokenService {
             List<String> list = userTokenList.stream().map(bean -> {
                 return getKey(bean.getSysCustomer(), bean.getToken());
             }).collect(Collectors.toList());
-            redisCacheUtils.del(list.toArray(new String[list.size()]));
+//            redisCacheUtils.del(list.toArray(new String[list.size()]));
         }
     }
 
+    // 添加一个token
     public String createUserToken(String sysCustomer, Long userId, String loginIp) {
         this.removeTokenCache(sysCustomer, userId);
         String token = createToken();
@@ -75,7 +76,7 @@ public class UserTokenService {
         info.setUserId(userId).setSysCustomer(sysCustomer).setDelFlag(0).setLoginIp(loginIp)
                 .setToken(token).setLoginTime(new Date()).setExpireDate(expireTime);
         userTokenRepository.save(info);
-        redisCacheUtils.set(getKey(sysCustomer, token), userId, expireTime / 1000, TimeUnit.SECONDS);
+//        redisCacheUtils.set(getKey(sysCustomer, token), userId, expireTime / 1000, TimeUnit.SECONDS);
         return token;
     }
 

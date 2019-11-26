@@ -27,11 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UserAuthController {
 
     @Autowired
-    private UserService userService;
-    @Autowired
     private UserAuthService userAuthService;
     @Autowired
     private SysCustomerService sysCustomerService;
+
     @RequestMapping("/mobile/login/by/phone")
     public String authByPhone(String sysCustomer, String phone, String passWd, HttpServletRequest request) throws UnKnowSysCustomerException {
         SysCustomerInfo customerInfo = sysCustomerService.getValidSysCustomerInfo(sysCustomer);
