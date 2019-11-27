@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @To change this template use File | Settings | File Templates.
  */
 @Service
-@ConditionalOnMissingBean(ParamsSettingService.class)
+//@ConditionalOnMissingBean(ParamsSettingService.class)
 public class ParamsSettingServiceImpl implements ParamsSettingService {
     @Autowired
     private ParamsSettingRepository paramsSettingRepository;

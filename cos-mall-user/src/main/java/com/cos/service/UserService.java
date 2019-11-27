@@ -33,8 +33,8 @@ public class UserService {
 
     @Autowired
     private UserTelCodeService userTelCodeService;
-    @Autowired
-    private ParamsSettingService paramsSettingService;
+//    @Autowired
+//    private ParamsSettingService paramsSettingService;
 
     @Autowired
     private ImageFileService imageFileService;
@@ -88,11 +88,11 @@ public class UserService {
         String code = CosCommonUtils.getTelCode();
         UserTelCodeInfo codeInfo = new UserTelCodeInfo();
 
-        ParamsSettingInfo param = paramsSettingService.findByParam(sysCustomer, SysConstants.TEL_CODE_EXPIRE);
+//        ParamsSettingInfo param = paramsSettingService.findByParam(sysCustomer, SysConstants.TEL_CODE_EXPIRE);
         Integer expireMinute = 3;
-        if (param != null && param.getParVal() != null) {
-            expireMinute = Integer.parseInt(param.getParVal().trim());
-        }
+//        if (param != null && param.getParVal() != null) {
+//            expireMinute = Integer.parseInt(param.getParVal().trim());
+//        }
         Date date = new Date();
         codeInfo.setSysCustomer(sysCustomer)
                 .setCodeType(UserTelCodeInfo.CODE_TYPE_REGISTER)

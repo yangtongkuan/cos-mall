@@ -4,14 +4,18 @@ import com.cos.common.config.redis.RedisCacheUtils;
 import com.cos.common.tools.AjaxResult;
 import com.cos.dto.user.UserInfoDto;
 import com.cos.service.ImageFileService;
+import com.cos.service.MailService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.Email;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,6 +34,9 @@ public class UploadTestController {
     @Autowired
     private RedisCacheUtils redisCacheUtils;
 
+    @Autowired
+    private MailService mailService;
+
     @RequestMapping("/image/upload/test")
     public Object uploadImage(MultipartFile file) {
         imageFileService.uploadImageTest(file);
@@ -40,6 +47,12 @@ public class UploadTestController {
         redisTemplate.opsForValue().set("test:1", userInfoDto);
         UserInfoDto redis_dto = (UserInfoDto) redisTemplate.opsForValue().get("user:1");
         return AjaxResult.successResult(redis_dto);
+    }
+
+    @RequestMapping("test")
+    public String test() {
+        mailService.sendMail();
+        return AjaxResult.successResult();
     }
 
 }

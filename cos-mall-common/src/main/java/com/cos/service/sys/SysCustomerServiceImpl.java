@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @To change this template use File | Settings | File Templates.
  */
 @Service
-@ConditionalOnMissingBean(SysCustomerService.class)
+//@ConditionalOnMissingBean(SysCustomerService.class)
 public class SysCustomerServiceImpl implements SysCustomerService {
 
     // 客户端标识
