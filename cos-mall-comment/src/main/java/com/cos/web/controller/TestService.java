@@ -1,9 +1,9 @@
 package com.cos.web.controller;
 
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.cos.dto.user.UserInfoDto;
 import com.cos.service.user.UserRpcService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 /**

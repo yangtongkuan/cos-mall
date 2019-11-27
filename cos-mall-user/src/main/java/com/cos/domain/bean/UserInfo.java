@@ -31,6 +31,7 @@ public class UserInfo implements Serializable {
     private String country;         // 区
     private String address;         // 地址
     private String phone;           // 登录账号
+    private String email;           // 邮箱
     private String photo;           // 头像
     private String signature;       // 签名
     private int delFlag = 0;        // 是否删除

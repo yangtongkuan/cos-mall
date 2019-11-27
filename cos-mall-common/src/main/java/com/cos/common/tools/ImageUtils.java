@@ -23,7 +23,7 @@ public class ImageUtils {
      * @throws Exception
      * @desc 上传文件
      */
-    public static void saveImage(MultipartFile uploadImage, String parentFolder) throws Exception {
+    public static String saveImage(MultipartFile uploadImage, String parentFolder) throws Exception {
         if (StringUtils.isEmpty(parentFolder)) {
             throw new Exception("parentFolder is not allow empty");
         }
@@ -36,6 +36,7 @@ public class ImageUtils {
             throw new Exception("file parent is not exists");
         }
         uploadImage.transferTo(file);
+        return "";
     }
 
     /**
