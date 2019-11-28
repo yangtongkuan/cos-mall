@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @Classname: SysCustomerServiceImpl
  * @To change this template use File | Settings | File Templates.
  */
-@Service
+//@Service
 //@ConditionalOnMissingBean(SysCustomerService.class)
 public class SysCustomerServiceImpl implements SysCustomerService {
 
