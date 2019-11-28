@@ -3,6 +3,7 @@ package com.cos.web.controller;
 import com.cos.common.config.redis.RedisCacheUtils;
 import com.cos.common.tools.AjaxResult;
 import com.cos.dto.user.UserInfoDto;
+import com.cos.service.EmailSendService;
 import com.cos.service.ImageFileService;
 import com.cos.service.MailService;
 import com.sun.org.apache.regexp.internal.RE;
@@ -34,8 +35,10 @@ public class UploadTestController {
     @Autowired
     private RedisCacheUtils redisCacheUtils;
 
+//    @Autowired
+//    private MailService mailService;
     @Autowired
-    private MailService mailService;
+    private EmailSendService emailSendService;
 
     @RequestMapping("/image/upload/test")
     public Object uploadImage(MultipartFile file) {
@@ -51,7 +54,8 @@ public class UploadTestController {
 
     @RequestMapping("test")
     public String test() {
-        mailService.sendMail();
+//        mailService.sendMail();
+        emailSendService.sendEmail("cos-mall");
         return AjaxResult.successResult();
     }
 
