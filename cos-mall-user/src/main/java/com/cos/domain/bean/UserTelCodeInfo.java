@@ -29,6 +29,6 @@ public class UserTelCodeInfo implements Serializable {
     private String phone;                         // 用户的账号
     private String email;                         // 用户email
     private Date createTime;                      // 创建时间
-    private Date expireDate;                      // 有效市场
+    private Date expireDate;                      // 有效时长
     private int delFlag;                          // 是否删除
 }
