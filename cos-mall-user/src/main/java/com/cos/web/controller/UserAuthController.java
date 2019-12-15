@@ -32,15 +32,15 @@ public class UserAuthController {
     private SysCustomerService sysCustomerService;
 
     @RequestMapping("/mobile/login/by/phone")
-    public String authByPhone(String sysCustomer, String phone, String passWd, HttpServletRequest request) throws UnKnowSysCustomerException {
+    public String authByPhone(String sysCustomer, String username, String password, HttpServletRequest request) throws UnKnowSysCustomerException {
         SysCustomerInfo customerInfo = sysCustomerService.getValidSysCustomerInfo(sysCustomer);
-        if (StringUtils.isBlank(phone) || StringUtils.isBlank(passWd)) {
+        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             return AjaxResult.errorResult("用户名或者密码不能为空");
         }
         String ip = ClientIpUtils.getClientIp(request);
         UserInfoVo vo = null;
         try {
-            vo = userAuthService.authByPhone(customerInfo.getIdentify(), phone, passWd, ip);
+            vo = userAuthService.authByPhone(customerInfo.getIdentify(), username, password, ip);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResult.errorResult(e.getMessage());
