@@ -1,7 +1,8 @@
-package com.cos.service.sys;
+package com.cos.service.sys.impl;
 
 import com.cos.dao.sys.ParamsSettingRepository;
 import com.cos.domain.bean.sys.ParamsSettingInfo;
+import com.cos.service.sys.ParamsSettingService;
 import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

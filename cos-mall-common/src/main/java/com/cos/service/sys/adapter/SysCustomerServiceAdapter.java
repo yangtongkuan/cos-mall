@@ -1,12 +1,11 @@
-package com.cos.service.sys;
+package com.cos.service.sys.adapter;
 
 import com.cos.dao.sys.SysCustomerRepository;
 import com.cos.domain.bean.sys.SysCustomerInfo;
 import com.cos.domain.utils.exception.UnKnowSysCustomerException;
+import com.cos.service.sys.SysCustomerService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -18,19 +17,16 @@ import java.util.stream.Collectors;
  * Created with IntelliJ IDEA.
  *
  * @User: @Created by yangtk
- * @Date: @Date 2019/11/21 8:54
- * @Classname: SysCustomerServiceImpl
+ * @Date: @Date 2019/12/23 11:50
+ * @Classname: SysCustomerServiceAdapter
  * @To change this template use File | Settings | File Templates.
  */
-//@Service
-//@ConditionalOnMissingBean(SysCustomerService.class)
-public class SysCustomerServiceImpl implements SysCustomerService {
-
+public abstract class SysCustomerServiceAdapter  implements SysCustomerService {
     // 客户端标识
-    private static ConcurrentHashMap<String, SysCustomerInfo> dataMap = new ConcurrentHashMap<>();
+    protected static ConcurrentHashMap<String, SysCustomerInfo> dataMap = new ConcurrentHashMap<>();
 
-    private final static String EmptySysCustomer = "the sysCustomer is not allowed empty";
-    private final static String UnSearchSysCustomer = "the customer is not find in system";
+    protected final static String EmptySysCustomer = "the sysCustomer is not allowed empty";
+    protected final static String UnSearchSysCustomer = "the customer is not find in system";
 
     @Autowired
     private SysCustomerRepository sysCustomerRepository;
@@ -38,6 +34,7 @@ public class SysCustomerServiceImpl implements SysCustomerService {
     @PostConstruct
     public void initLoad() {
         dataMap.clear();
+        System.out.println("parent is run...");
         List<SysCustomerInfo> customerInfoList = sysCustomerRepository.findByDelFlag(0);
         if (customerInfoList != null) {
             Map<String, SysCustomerInfo> dataDbMap = customerInfoList.stream().filter(a -> a.getIdentify() != null && StringUtils.isNotEmpty(a.getIdentify())).

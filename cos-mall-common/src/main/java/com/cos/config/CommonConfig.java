@@ -1,10 +1,9 @@
 package com.cos.config;
 
 import com.cos.service.sys.ParamsSettingService;
-import com.cos.service.sys.ParamsSettingServiceImpl;
+import com.cos.service.sys.impl.ParamsSettingServiceImpl;
 import com.cos.service.sys.SysCustomerService;
-import com.cos.service.sys.SysCustomerServiceImpl;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import com.cos.service.sys.impl.SysCustomerServiceDefaultImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +26,7 @@ public class CommonConfig {
     @Bean
     @ConditionalOnMissingBean(SysCustomerService.class)
     public SysCustomerService getSysCustomerService() {
-        return new SysCustomerServiceImpl();
+        return new SysCustomerServiceDefaultImpl();
     }
 
     @Bean

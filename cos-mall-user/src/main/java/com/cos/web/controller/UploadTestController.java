@@ -6,6 +6,8 @@ import com.cos.dto.user.UserInfoDto;
 import com.cos.service.EmailSendService;
 import com.cos.service.ImageFileService;
 import com.cos.service.MailService;
+import com.cos.service.sys.SysCustomerService;
+import com.cos.service.sys.impl.SysCustomerServiceDefaultImpl;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
@@ -35,7 +37,7 @@ public class UploadTestController {
     @Autowired
     private RedisCacheUtils redisCacheUtils;
 
-//    @Autowired
+    //    @Autowired
 //    private MailService mailService;
     @Autowired
     private EmailSendService emailSendService;
@@ -55,7 +57,8 @@ public class UploadTestController {
     @RequestMapping("test")
     public String test() {
 //        mailService.sendMail();
-        emailSendService.sendEmail("cos-mall");
+        SysCustomerService service = new SysCustomerServiceDefaultImpl();
+//        emailSendService.sendEmail("cos-mall");
         return AjaxResult.successResult();
     }
 

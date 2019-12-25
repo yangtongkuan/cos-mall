@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("user")
 public class UserController {
 
-    @Autowired
     private SysCustomerService sysCustomerService;
     @Autowired
     private UserService userService;
